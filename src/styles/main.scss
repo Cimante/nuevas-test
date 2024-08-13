@@ -1,2 +1,14 @@
 @import "./normalize.css";
 @import "./fonts.scss";
+@import "./variables.scss";
+
+:root {
+  line-height: normal;
+  font-weight: 400;
+  color: $black;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
