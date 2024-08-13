@@ -4,11 +4,18 @@ import path from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  plugins: [vue()],
   base: "/nuevas-test",
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  plugins: [vue()],
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: `@import "@/styles/variables.scss";`,
+      },
+    },
+  },
 });
