@@ -3,6 +3,7 @@
 @import "./variables.scss";
 
 :root {
+  font-family: "Inter", Helvetica, Arial, system-ui, Avenir, sans-serif;
   line-height: normal;
   font-weight: 400;
   color: $black;
@@ -11,4 +12,8 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
 }
