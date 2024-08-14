@@ -13,20 +13,22 @@ export const useStore = defineStore("store", {
       },
       {
         id: "1",
+        latitude: 52.95,
+        longitude: 36.13,
         widgetType: "weather" as widgetType,
       },
-    ] as IWidget[],
+    ],
     dashboardWidgets: [] as IWidget[],
   }),
   actions: {
     removeWidget(id: string) {
       this.dashboardWidgets = this.dashboardWidgets.filter(
-        (widget) => widget.id !== id
+        (widget: IWidget) => widget.id !== id
       );
       this.saveDashboard();
     },
     updateWidget(id: string, options: any) {
-      const target = this.dashboardWidgets.find((w) => w.id === id);
+      const target = this.dashboardWidgets.find((w: IWidget) => w.id === id);
       if (target) {
         Object.assign(target, options);
         this.saveDashboard();

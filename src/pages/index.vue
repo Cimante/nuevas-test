@@ -2,6 +2,7 @@
 import { useStore } from "@/store";
 import draggable from "vuedraggable";
 import WidgetText from "@/components/widgets/widgetText.vue";
+import WidgetWeather from "@/components/widgets/widgetWeather.vue";
 
 const store = useStore();
 </script>
@@ -24,6 +25,13 @@ const store = useStore();
               v-if="element.widgetType === 'text'"
               :id="element.id"
               :text="`${element.text}`"
+              draggable="true"
+            />
+            <WidgetWeather
+              v-if="element.widgetType === 'weather'"
+              :id="element.id"
+              :latitude="element.latitude"
+              :longitude="element.longitude"
               draggable="true"
             />
           </div>

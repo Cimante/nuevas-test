@@ -30,6 +30,8 @@ const saveOptions = () => {
 
 const labelDict = {
   text: "Текст",
+  latitude: "Широта",
+  longitude: "Долгота",
 };
 </script>
 
@@ -41,11 +43,7 @@ const labelDict = {
 
     <h1 class="Settings__title">Настройки</h1>
 
-    <form
-      action=""
-      class="Settings__form"
-      v-if="widgetOptions.widgetType === 'text'"
-    >
+    <form action="" class="Settings__form">
       <div
         class="Settings__input-group"
         v-for="(_, key, idx) in tempOptions"
@@ -57,7 +55,7 @@ const labelDict = {
         <input
           class="input-group__input"
           :id="`${key}-${id}`"
-          type="text"
+          :type="['latitude', 'longitude'].includes(key) ? 'number' : 'text'"
           v-model="tempOptions[key]"
         />
       </div>
@@ -85,6 +83,12 @@ const labelDict = {
     font-weight: 600;
   }
 
+  &__form {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
   &__btn {
     font-size: 0.875rem;
     cursor: pointer;
@@ -102,7 +106,7 @@ const labelDict = {
     }
 
     &__input {
-      padding: 0.25rem;
+      padding: 0.5rem;
     }
   }
 

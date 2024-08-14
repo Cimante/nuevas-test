@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useStore } from "@/store";
 import WidgetText from "@/components/widgets/widgetText.vue";
+import WidgetWeather from "@/components/widgets/widgetWeather.vue";
 import draggable from "vuedraggable";
 
 const store = useStore();
@@ -32,6 +33,13 @@ const cloneWidget = (widget: any) => {
             :text="`${element.text}`"
             draggable="true"
           />
+          <WidgetWeather
+            v-if="element.widgetType === 'weather'"
+            :id="element.id"
+            :latitude="element.latitude"
+            :longitude="element.longitude"
+            draggable="true"
+          />
         </div>
       </template>
     </draggable>
@@ -54,6 +62,9 @@ const cloneWidget = (widget: any) => {
   }
 
   &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
     height: 100%;
     padding: 0;
     list-style: none;
