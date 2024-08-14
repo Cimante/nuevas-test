@@ -46,7 +46,7 @@ const labelDict = {
 <template>
   <section class="Settings page-content">
     <button class="Settings__btn btn-back" @click="$router.back()">
-      Назад
+      ◀ Назад
     </button>
 
     <h1 class="Settings__title">Настройки</h1>
@@ -81,6 +81,8 @@ const labelDict = {
 </template>
 
 <style lang="scss">
+@import "@/styles/mixins";
+
 .Settings {
   &__title {
     margin-top: 2rem;
@@ -94,14 +96,21 @@ const labelDict = {
     gap: 1rem;
   }
 
-  &__btn {
-    font-size: 0.875rem;
-    cursor: pointer;
-  }
-
   &__input-group {
     display: inline-flex;
     flex-direction: column;
+  }
+
+  .btn-back {
+    @include btn($black);
+  }
+
+  .btn-apply {
+    @include btn($green);
+  }
+
+  .btn-revert {
+    @include btn($blue);
   }
 
   .input-group {
@@ -118,7 +127,7 @@ const labelDict = {
   &__controls {
     display: flex;
     gap: 0.5rem;
-    margin-top: 4rem;
+    margin-top: 1.75rem;
   }
 }
 </style>

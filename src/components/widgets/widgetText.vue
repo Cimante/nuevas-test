@@ -17,8 +17,9 @@ const props = defineProps<{
       <router-link
         :to="`/settings/${props.id}`"
         class="Widget__btn btn-settings"
-        >Настройки</router-link
       >
+        Настройки
+      </router-link>
       <button
         class="Widget__btn btn-delete"
         @click="store.removeWidget(props.id)"
@@ -30,6 +31,8 @@ const props = defineProps<{
 </template>
 
 <style lang="scss" scoped>
+@import "@/styles/mixins";
+
 .Widget {
   &__title {
     margin-top: 0;

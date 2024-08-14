@@ -1,6 +1,7 @@
 @import "./normalize.css";
 @import "./fonts.scss";
 @import "./variables.scss";
+@import "./mixins.scss";
 
 :root {
   font-family: "Inter", Helvetica, Arial, system-ui, Avenir, sans-serif;
@@ -44,7 +45,8 @@
   &__btn {
     background: none;
     border: none;
-    padding: 0rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
     font-size: 0.85rem;
     cursor: pointer;
 
@@ -63,12 +65,11 @@
   }
 
   .btn-settings {
-    text-decoration: none;
-    color: $blue;
+    @include btn($blue, $opacity: 0);
   }
 
   .btn-delete {
-    color: $red;
+    @include btn($red, $opacity: 0);
   }
 }
 
