@@ -32,14 +32,11 @@
   color: $black;
   cursor: default;
 
-  &__content {
-    margin-bottom: 1rem;
-  }
-
   &__controls {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-top: 1rem;
   }
 
   &__btn {
