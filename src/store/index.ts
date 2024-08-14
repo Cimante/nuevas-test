@@ -13,8 +13,9 @@ export const useStore = defineStore("store", {
       },
       {
         id: "1",
-        latitude: 52.95,
-        longitude: 36.13,
+        city: "Москва",
+        latitude: 55.4521,
+        longitude: 37.3704,
         widgetType: "weather" as widgetType,
       },
     ],

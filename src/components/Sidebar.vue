@@ -38,6 +38,8 @@ const cloneWidget = (widget: any) => {
             :id="element.id"
             :latitude="element.latitude"
             :longitude="element.longitude"
+            :applied="false"
+            :city="element.city"
             draggable="true"
           />
         </div>

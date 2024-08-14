@@ -32,6 +32,8 @@ const store = useStore();
               :id="element.id"
               :latitude="element.latitude"
               :longitude="element.longitude"
+              :applied="true"
+              :city="element.city"
               draggable="true"
             />
           </div>

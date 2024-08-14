@@ -6,4 +6,5 @@ export interface IWidget {
   text?: string;
   latitude?: number;
   longitude?: number;
+  city?: string;
 }

@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, reactive } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useStore } from "@/store";
+import { removeProperties } from "@/functions/removeProperties";
 
 const store = useStore();
 const route = useRoute();
@@ -17,11 +18,15 @@ if (!widgetOptions.value) {
   router.back();
 }
 
-let { id: _, widgetType: __, ...tempOptions } = widgetOptions.value;
+const tempOptions = reactive(
+  removeProperties(widgetOptions.value, "id", "widgetType")
+);
 
 const restoreOptions = () => {
-  let { id: _, widgetType: __, ...tempOptions } = widgetOptions.value;
-  return tempOptions;
+  Object.assign(
+    tempOptions,
+    removeProperties(widgetOptions.value, "id", "widgetType")
+  );
 };
 
 const saveOptions = () => {
@@ -29,6 +34,7 @@ const saveOptions = () => {
 };
 
 const labelDict = {
+  city: "Город",
   text: "Текст",
   latitude: "Широта",
   longitude: "Долгота",
@@ -61,14 +67,13 @@ const labelDict = {
       </div>
     </form>
 
+    <pre>{{ tempOptions }}</pre>
+
     <div class="Settings__controls">
       <button class="Settings__btn btn-apply" @click="saveOptions()">
         Сохранить
       </button>
-      <button
-        class="Settings__btn btn-revert"
-        @click="tempOptions = restoreOptions()"
-      >
+      <button class="Settings__btn btn-revert" @click="restoreOptions()">
         Отменить изменения
       </button>
     </div>
