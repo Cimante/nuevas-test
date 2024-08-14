@@ -1,13 +1,11 @@
 <script setup lang="ts">
 import { useStore } from "@/store";
 import WidgetText from "@/components/widgets/widgetText.vue";
-// import { widgetType } from "@/types/widgetType";
 import draggable from "vuedraggable";
 
 const store = useStore();
 
 const cloneWidget = (widget: any) => {
-  console.log(widget);
   const cloneWidget = {
     ...widget,
     id: Date.now().toString(),

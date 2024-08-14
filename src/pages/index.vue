@@ -11,17 +11,18 @@ const store = useStore();
     <h1 class="Dashboard__title">Интерактивный дашборд</h1>
     <section class="Dashboard__widgets">
       <draggable
-        tag="section"
+        tag="div"
         class="Dashboard__widgets"
         v-model="store.dashboardWidgets"
         :group="{ name: 'widgets', pull: 'clone' }"
+        @change="store.saveDashboard"
         item-key="id"
       >
         <template #item="{ element }">
           <div class="Dashboard__widget-item">
             <WidgetText
               v-if="element.widgetType === 'text'"
-              :text="`${element.text} ID ${element.id}`"
+              :text="`${element.text}`"
               draggable="true"
             />
           </div>

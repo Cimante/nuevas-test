@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { toRaw } from "vue";
+import { storageGet, storageSet } from "@/functions/storage";
 import { widgetType } from "@/types/widgetType";
 import { IWidget } from "@/interfaces/IWidget";
 
@@ -19,20 +19,17 @@ export const useStore = defineStore("store", {
     dashboardWidgets: [] as IWidget[],
   }),
   actions: {
-    addWidget(widget: widgetType) {
-      this.dashboardWidgets.push({
-        id: Date.now().toString(),
-        widgetType: widget,
-      } as IWidget);
-    },
     removeWidget(id: string) {
-      console.log(toRaw(this.dashboardWidgets));
-
       this.dashboardWidgets = this.dashboardWidgets.filter(
         (widget) => widget.id !== id
       );
+    },
+    saveDashboard() {
+      storageSet(this.dashboardWidgets, "dashboardWidgets");
+    },
 
-      console.log(toRaw(this.dashboardWidgets));
+    loadDashboard() {
+      this.dashboardWidgets = storageGet<IWidget[]>("dashboardWidgets");
     },
   },
   getters: {
