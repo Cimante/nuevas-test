@@ -1,0 +1,115 @@
+<script setup lang="ts">
+import { ref } from "vue";
+import { useRoute, useRouter } from "vue-router";
+import { useStore } from "@/store";
+
+const store = useStore();
+const route = useRoute();
+const router = useRouter();
+
+const id = ref(route.params.id);
+
+const widgetOptions = ref(
+  store.getDashboadWidgets.filter((widget) => widget.id === id.value)[0]
+);
+
+if (!widgetOptions.value) {
+  router.back();
+}
+
+let { id: _, widgetType: __, ...tempOptions } = widgetOptions.value;
+
+const restoreOptions = () => {
+  let { id: _, widgetType: __, ...tempOptions } = widgetOptions.value;
+  return tempOptions;
+};
+
+const saveOptions = () => {
+  store.updateWidget(widgetOptions.value["id"], tempOptions);
+};
+
+const labelDict = {
+  text: "Текст",
+};
+</script>
+
+<template>
+  <section class="Settings page-content">
+    <button class="Settings__btn btn-back" @click="$router.back()">
+      Назад
+    </button>
+
+    <h1 class="Settings__title">Настройки</h1>
+
+    <form
+      action=""
+      class="Settings__form"
+      v-if="widgetOptions.widgetType === 'text'"
+    >
+      <div
+        class="Settings__input-group"
+        v-for="(_, key, idx) in tempOptions"
+        :key="idx"
+      >
+        <label class="input-group__label" :for="`${key}-${id}`">{{
+          labelDict[key]
+        }}</label>
+        <input
+          class="input-group__input"
+          :id="`${key}-${id}`"
+          type="text"
+          v-model="tempOptions[key]"
+        />
+      </div>
+    </form>
+
+    <div class="Settings__controls">
+      <button class="Settings__btn btn-apply" @click="saveOptions()">
+        Сохранить
+      </button>
+      <button
+        class="Settings__btn btn-revert"
+        @click="tempOptions = restoreOptions()"
+      >
+        Отменить изменения
+      </button>
+    </div>
+  </section>
+</template>
+
+<style lang="scss">
+.Settings {
+  &__title {
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+  }
+
+  &__btn {
+    font-size: 0.875rem;
+    cursor: pointer;
+  }
+
+  &__input-group {
+    display: inline-flex;
+    flex-direction: column;
+  }
+
+  .input-group {
+    &__label {
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+
+    &__input {
+      padding: 0.25rem;
+    }
+  }
+
+  &__controls {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 4rem;
+  }
+}
+</style>

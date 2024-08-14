@@ -14,7 +14,11 @@ const props = defineProps<{
     <h3 class="Widget__title">Текстовый виджет</h3>
     <p class="Widget__content">{{ props.text }}</p>
     <section class="Widget__controls">
-      <button class="Widget__btn btn-settings">Настройки</button>
+      <router-link
+        :to="`/settings/${props.id}`"
+        class="Widget__btn btn-settings"
+        >Настройки</router-link
+      >
       <button
         class="Widget__btn btn-delete"
         @click="store.removeWidget(props.id)"

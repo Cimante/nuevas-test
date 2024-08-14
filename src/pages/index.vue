@@ -7,7 +7,7 @@ const store = useStore();
 </script>
 
 <template>
-  <section class="Dashboard">
+  <section class="Dashboard page-content">
     <h1 class="Dashboard__title">Интерактивный дашборд</h1>
     <section class="Dashboard__widgets">
       <draggable
@@ -37,7 +37,6 @@ const store = useStore();
 .Dashboard {
   display: flex;
   flex-direction: column;
-  padding: 1rem 2rem;
   overflow: auto;
 
   &__title {

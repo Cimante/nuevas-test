@@ -25,6 +25,13 @@ export const useStore = defineStore("store", {
       );
       this.saveDashboard();
     },
+    updateWidget(id: string, options: any) {
+      const target = this.dashboardWidgets.find((w) => w.id === id);
+      if (target) {
+        Object.assign(target, options);
+        this.saveDashboard();
+      }
+    },
     saveDashboard() {
       storageSet(this.dashboardWidgets, "dashboardWidgets");
     },

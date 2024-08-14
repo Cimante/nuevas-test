@@ -1,11 +1,15 @@
-import { createMemoryHistory, createRouter } from "vue-router";
+import { createWebHistory, createRouter } from "vue-router";
 
 import Index from "@/pages/index.vue";
+import Settings from "@/pages/settings.vue";
 
-const routes = [{ path: "/", component: Index }];
+const routes = [
+  { path: "/", component: Index },
+  { path: "/settings/:id", component: Settings },
+];
 
 const router = createRouter({
-  history: createMemoryHistory(),
+  history: createWebHistory(import.meta.env.BASE_URL),
   routes,
 });
 

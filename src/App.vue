@@ -13,7 +13,7 @@ onBeforeMount(() => {
 <template>
   <main class="container">
     <Sidebar />
-    <router-view />
+    <RouterView />
   </main>
 </template>
 
