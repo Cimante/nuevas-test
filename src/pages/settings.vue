@@ -3,6 +3,7 @@ import { ref, reactive } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useStore } from "@/store";
 import { removeProperties } from "@/functions/removeProperties";
+import { IWidget } from "@/interfaces/IWidget";
 
 const store = useStore();
 const route = useRoute();
@@ -18,7 +19,8 @@ if (!widgetOptions.value) {
   router.back();
 }
 
-const tempOptions = reactive(
+type Toptions = Omit<IWidget, "id" | "widgetType">;
+const tempOptions = reactive<Toptions>(
   removeProperties(widgetOptions.value, "id", "widgetType")
 );
 
@@ -66,8 +68,6 @@ const labelDict = {
         />
       </div>
     </form>
-
-    <pre>{{ tempOptions }}</pre>
 
     <div class="Settings__controls">
       <button class="Settings__btn btn-apply" @click="saveOptions()">

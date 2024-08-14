@@ -73,7 +73,6 @@ if (props.applied) {
       <p class="Widget__content-item" v-if="weatherData.value?.snowfall > 0">
         <b>Снег:</b> {{ weatherData.value?.snowfall.toFixed(1) }} см.
       </p>
-      <!-- <pre>{{ weatherData.value }}</pre> -->
     </section>
     <section class="Widget__controls">
       <router-link
