@@ -23,6 +23,7 @@ export const useStore = defineStore("store", {
       this.dashboardWidgets = this.dashboardWidgets.filter(
         (widget) => widget.id !== id
       );
+      this.saveDashboard();
     },
     saveDashboard() {
       storageSet(this.dashboardWidgets, "dashboardWidgets");

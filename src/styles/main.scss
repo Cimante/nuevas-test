@@ -25,5 +25,37 @@
   padding: 1rem;
   max-width: 32rem;
   color: $black;
+  cursor: default;
+
+  &__content {
+    margin-bottom: 1rem;
+  }
+
+  &__controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__btn {
+    font-size: 0.8rem;
+    cursor: pointer;
+
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  &:hover {
+    .Widget__btn {
+      opacity: 1;
+    }
+  }
+}
+
+.Sidebar .Widget {
   cursor: grab;
+}
+
+.Sidebar .Widget__controls {
+  display: none;
 }

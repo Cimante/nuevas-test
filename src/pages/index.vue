@@ -22,6 +22,7 @@ const store = useStore();
           <div class="Dashboard__widget-item">
             <WidgetText
               v-if="element.widgetType === 'text'"
+              :id="element.id"
               :text="`${element.text}`"
               draggable="true"
             />

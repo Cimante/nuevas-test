@@ -28,6 +28,7 @@ const cloneWidget = (widget: any) => {
         <div class="list-group-item">
           <WidgetText
             v-if="element.widgetType === 'text'"
+            :id="element.id"
             :text="`${element.text}`"
             draggable="true"
           />

@@ -1,5 +1,10 @@
 <script setup lang="ts">
+import { useStore } from "@/store";
+
+const store = useStore();
+
 const props = defineProps<{
+  id: string;
   text: string;
 }>();
 </script>
@@ -8,6 +13,15 @@ const props = defineProps<{
   <section class="Widget Widget-text">
     <h3 class="Widget__title">Текстовый виджет</h3>
     <p class="Widget__content">{{ props.text }}</p>
+    <section class="Widget__controls">
+      <button class="Widget__btn btn-settings">Настройки</button>
+      <button
+        class="Widget__btn btn-delete"
+        @click="store.removeWidget(props.id)"
+      >
+        Удалить
+      </button>
+    </section>
   </section>
 </template>
 
@@ -17,10 +31,6 @@ const props = defineProps<{
     margin-top: 0;
     margin-bottom: 0.5rem;
     font-weight: 600;
-  }
-
-  &__content {
-    margin: 0;
   }
 }
 </style>
