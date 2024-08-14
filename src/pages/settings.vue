@@ -62,10 +62,18 @@ const labelDict = {
         }}</label>
         <input
           class="input-group__input"
+          v-if="key !== 'text'"
           :id="`${key}-${id}`"
           :type="['latitude', 'longitude'].includes(key) ? 'number' : 'text'"
           v-model="tempOptions[key]"
         />
+        <textarea
+          v-if="key === 'text'"
+          v-model="tempOptions[key]"
+          class="input-group__textarea"
+          cols="60"
+          rows="8"
+        ></textarea>
       </div>
     </form>
 
@@ -121,6 +129,11 @@ const labelDict = {
 
     &__input {
       padding: 0.5rem;
+    }
+
+    &__textarea {
+      padding: 0.5rem;
+      resize: none;
     }
   }
 
