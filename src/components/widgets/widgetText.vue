@@ -39,5 +39,9 @@ const props = defineProps<{
     margin-bottom: 0.5rem;
     font-weight: 600;
   }
+
+  &__content {
+    margin: 0;
+  }
 }
 </style>
