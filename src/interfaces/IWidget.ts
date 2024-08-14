@@ -1,4 +1,4 @@
-import { widgetType } from "@/types/widget";
+import { widgetType } from "@/types/widgetType";
 
 export interface IWidget {
   id: string;

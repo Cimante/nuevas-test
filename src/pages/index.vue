@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useStore } from "@/store";
+import draggable from "vuedraggable";
 import WidgetText from "@/components/widgets/widgetText.vue";
 
 const store = useStore();
@@ -9,15 +10,31 @@ const store = useStore();
   <section class="Dashboard">
     <h1 class="Dashboard__title">Интерактивный дашборд</h1>
     <section class="Dashboard__widgets">
-      <template v-for="(_, idx) in store.dashboardWidgets" :key="idx">
-        <WidgetText :text="`Текстовый виджет ${idx + 1}`" />
-      </template>
+      <draggable
+        tag="section"
+        class="Dashboard__widgets"
+        v-model="store.dashboardWidgets"
+        :group="{ name: 'widgets', pull: 'clone' }"
+        item-key="id"
+      >
+        <template #item="{ element }">
+          <div class="Dashboard__widget-item">
+            <WidgetText
+              v-if="element.widgetType === 'text'"
+              :text="`${element.text} ID ${element.id}`"
+              draggable="true"
+            />
+          </div>
+        </template>
+      </draggable>
     </section>
   </section>
 </template>
 
 <style lang="scss">
 .Dashboard {
+  display: flex;
+  flex-direction: column;
   padding: 1rem 2rem;
   overflow: auto;
 
@@ -30,7 +47,8 @@ const store = useStore();
   &__widgets {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 0.75rem;
+    height: 100%;
   }
 }
 </style>
